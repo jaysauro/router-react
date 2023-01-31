@@ -1,38 +1,22 @@
+import { GET } from "../utils/HTTP";
 import { useState, useEffect } from "react";
-import {GET} from "../utils/HTTP";
+import Card from "../components/card";
 import styles from "./styles/UtList.module.scss";
 
-const UtentsList = () => {
-  const [products, setProducts] = useState([]);
-  const users = products.users;
-  console.log(users);
-
-  // const mappedUsers = users.map(function(element) {
-  //   return `${element.firstName} ${element.lastName}`;
-  // });
-  // console.log(mappedUsers);
-
-  // ---- NON FUNZIONA, DA UNDEFINED ----
-  
-
-  const reloadItems = () => {
-    GET("users").then(data => {
-      console.log(data);
-      setProducts(data);;
-    });
-  };
+export default function UtentsList() {
+  const [userList, setUserList] = useState([]);
 
   useEffect(() => {
-    reloadItems();
+    GET("users?limit=10").then(({ users }) => setUserList(users));
   }, []);
 
-
   return (
-    <div className={styles.utentList}>
-      <ul className={styles.utents}>
-      </ul>
-    </div>
+    <>
+      <div className={styles.Users}>
+        {userList.map((user) => (
+          <Card userData={user} key={user.id} />
+        ))}
+      </div>
+    </>
   );
-};
-
-export default UtentsList;
+}

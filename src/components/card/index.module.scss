@@ -1,0 +1,15 @@
+.Card {
+    background: rgb(188, 248, 188);
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    h3 {
+        background: lightblue;
+        width: 100%;
+        text-align: center;
+        padding: 5px 0;
+    }
+}

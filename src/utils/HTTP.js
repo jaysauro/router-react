@@ -1,5 +1,8 @@
-const baseUrl = "https://dummyjson.com/";
+const BASE_URL = "https://dummyjson.com/";
 
-export const GET = (type, id = "") => {
-  return fetch(baseUrl + type + id).then(res => res.json());
+const GET = async (endpoint) => {
+  const res = await fetch(BASE_URL + endpoint);
+  return res.json();
 };
+
+export { GET };
